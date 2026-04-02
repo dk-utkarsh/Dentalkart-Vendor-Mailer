@@ -73,11 +73,15 @@ export default function Home() {
     if (!parsed) return;
     setSending(true); setSendResults(null); setError("");
     try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 600000); // 10 min timeout
       const res = await fetch("/api/send-emails", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ vendors: parsed.vendors, headers: parsed.headers }),
+        signal: controller.signal,
       });
+      clearTimeout(timeout);
       const data = await res.json();
       if (!res.ok) { setError(data.error || "Failed to send emails"); return; }
       setSendResults(data.results);

@@ -4,7 +4,7 @@ import { readFileSync } from "fs";
 import { join } from "path";
 
 export const runtime = "nodejs";
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 interface VendorGroup {
   vendor: string;
@@ -246,8 +246,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ results, sent, failed });
   } catch (err) {
     console.error("Send error:", err);
+    const message = err instanceof Error ? err.message : "Unknown error";
     return NextResponse.json(
-      { error: "Failed to send emails" },
+      { error: `Failed to send emails: ${message}` },
       { status: 500 }
     );
   }
