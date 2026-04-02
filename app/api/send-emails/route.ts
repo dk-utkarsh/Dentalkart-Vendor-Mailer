@@ -93,7 +93,8 @@ export async function POST(req: NextRequest) {
         <tr>
           <td style="padding:30px;">
             <p style="font-size:16px;color:#333;margin:0 0 6px;">Dear <strong style="color:#2B8AC4;">${group.vendor}</strong>,</p>
-            <p style="font-size:14px;color:#555;margin:0 0 20px;">Please find below your invoice details:</p>
+            <p style="font-size:14px;color:#555;margin:0 0 10px;">The below-mentioned invoice details are not reflecting in our GSTR-2B. Kindly check whether the same has been filed from your end.</p>
+            <p style="font-size:14px;color:#555;margin:0 0 20px;">If already filed, please share a screenshot from the GST portal for our reference.</p>
 
             <!-- Invoice Table -->
             <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border:1px solid #d6e4f0;border-radius:6px;overflow:hidden;">
